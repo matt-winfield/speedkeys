@@ -10,7 +10,7 @@
 		/* prefixed with foreground because it should look good on the background */
 		--foreground-destructive: 345 82.7% 40.8%;
 
-		--background: 0 0% 100%;
+		--background: 0 0% 90%;
 		--foreground: 222.2 84% 4.9%;
 
 		--muted: 210 40% 93%;
@@ -23,10 +23,10 @@
 		--card-foreground: 222.2 84% 4.9%;
 
 		--border: 214.3 31.8% 91.4%;
-		--input: 214.3 31.8% 91.4%;
+		--input: 214.3 10% 80%;
 		--input-invalid: 0 84.2% 60.2%;
 
-		--primary: 222.2 47.4% 11.2%;
+		--primary: 222.2 10% 20.2%;
 		--primary-foreground: 210 40% 98%;
 
 		--secondary: 210 20% 83%;
@@ -44,20 +44,20 @@
 	}
 
 	.dark {
-		--background: 222.2 84% 4.9%;
-		--foreground: 210 40% 98%;
+		--background: 222.2 10% 8%;
+		--foreground: 210 10% 98%;
 
 		/* prefixed with foreground because it should look good on the background */
 		--foreground-destructive: -4 84% 60%;
 
-		--muted: 217.2 32.6% 12%;
-		--muted-foreground: 215 20.2% 65.1%;
+		--muted: 217.2 10% 12%;
+		--muted-foreground: 215 10% 65.1%;
 
-		--popover: 222.2 84% 4.9%;
-		--popover-foreground: 210 40% 98%;
+		--popover: 222.2 10% 4.9%;
+		--popover-foreground: 210 10% 98%;
 
-		--card: 222.2 84% 4.9%;
-		--card-foreground: 210 40% 98%;
+		--card: 222.2 10% 10%;
+		--card-foreground: 210 10% 98%;
 
 		--border: 217.2 32.6% 17.5%;
 		--input: 217.2 32.6% 17.5%;
