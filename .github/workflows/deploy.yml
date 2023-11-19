@@ -2,7 +2,7 @@ name: 🚀 Deploy
 on:
   push:
     branches:
-      - main
+      - master
       - dev
   pull_request: {}
 
@@ -140,10 +140,10 @@ jobs:
     name: 🚀 Deploy
     runs-on: ubuntu-22.04
     needs: [lint, typecheck, vitest, playwright]
-    # only build/deploy main branch on pushes
+    # only build/deploy master branch on pushes
     if:
-      ${{ (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev') &&
-      github.event_name == 'push' }}
+      ${{ (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev')
+      && github.event_name == 'push' }}
 
     steps:
       - name: ⬇️ Checkout repo
@@ -174,7 +174,7 @@ jobs:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
       - name: 🚀 Deploy Production
-        if: ${{ github.ref == 'refs/heads/main' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run:
           flyctl deploy --remote-only --build-arg COMMIT_SHA=${{ github.sha }}
         env:
