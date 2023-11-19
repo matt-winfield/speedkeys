@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { createStore, useStore } from 'zustand'
 import { motion } from 'framer-motion'
+import { cn } from '#app/utils/misc.tsx'
 
 interface TypeInputProps {
 	words: string[]
@@ -22,8 +23,8 @@ export const TypeInput = ({ words }: TypeInputProps) => {
 	return (
 		<div className="mx-auto flex max-w-7xl flex-wrap gap-x-3 gap-y-2 p-3 text-4xl">
 			{store.words.map((wordState, index) => (
-				<span key={index} className="">
-					<span>{wordState.input}</span>
+				<span key={index} className="relative">
+					<InputDisplay wordState={wordState} />
 					{index === store.currentWordIndex && (
 						<span className="relative text-blue-500">
 							<motion.span
@@ -40,10 +41,39 @@ export const TypeInput = ({ words }: TypeInputProps) => {
 					<span className="text-muted-foreground">
 						{getRemainingWordSlice(wordState)}
 					</span>
+					{isWordWrong(index, store) && (
+						<span className="absolute -bottom-[1px] left-0 h-[1px] w-full bg-red-500" />
+					)}
 				</span>
 			))}
 		</div>
 	)
+}
+
+const InputDisplay = ({ wordState }: { wordState: WordState }) => {
+	const inputCharacters = wordState.input.split('')
+
+	return (
+		<span>
+			{inputCharacters.map((char, index) => (
+				<span
+					key={`${wordState.word}-${index}`}
+					className={cn(char !== wordState.word[index] && 'text-red-500')}
+				>
+					{char}
+				</span>
+			))}
+		</span>
+	)
+}
+
+const isWordWrong = (index: number, state: State) => {
+	const { currentWordIndex, words } = state
+	const word = words[index]
+	if (!word) return false
+	if (index >= currentWordIndex) return false
+
+	return word.input !== word.word
 }
 
 const getRemainingWordSlice = (word: WordState) => {
